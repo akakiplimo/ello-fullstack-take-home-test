@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import {TextField, Grid, Paper, Button, Box, Typography, InputAdornment, IconButton} from '@mui/material';
+import {TextField, Grid, Box, Typography, InputAdornment, IconButton} from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import {Book, SearchBarProps} from '../../types/types';
-import {StyledImg} from "../AppContainer.tsx";
+import {SearchBarProps} from '../../types/types';
+import BookCover from "../Book/BookCover.tsx";
+import {isBookInReadingList} from "../../utils/helpers.ts";
 
 const SearchBar: React.FC<SearchBarProps> = ({
                                                  books,
@@ -21,9 +20,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const filteredBooks = books.filter((book) =>
         book.title && book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    const isBookInReadingList = (book: Book) =>
-        readingList.some((readingListBook) => readingListBook.title === book.title && readingListBook.author === book.author);
 
     const disabledStyle = {
         cursor: 'not-allowed',
@@ -87,57 +83,25 @@ const SearchBar: React.FC<SearchBarProps> = ({
                             <Grid container spacing={2}>
                             {filteredBooks.map((book, index) => (
                                 <Grid item key={index} xs={12} sm={6} md={3} lg={2}>
-                                    <Paper style={{ padding: 16, position: 'relative' }}>
-                                        <StyledImg
-                                            srcSet={`${book.coverPhotoURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                            src={`${book.coverPhotoURL}?w=164&h=164&fit=crop&auto=format`}
-                                            alt={book.title}
-                                            loading="lazy"
-                                        />
-                                        <Typography
-                                            variant="subtitle1"
-                                            component="h3"
-                                            style={{
-                                                maxHeight: '3.5em',
+                                    <BookCover
+                                        book={book}
+                                        isInReadingList={isBookInReadingList(book, readingList)}
+                                        onAddToReadingList={onAddToReadingList}
+                                        onRemoveFromReadingList={onRemoveFromReadingList}
+                                        titleTypographyProps={{
+                                            variant: 'subtitle2',
+                                            color: 'textPrimary',
+                                            style: {
+                                                maxHeight: '4.5em',
                                                 overflow: 'hidden',
                                                 whiteSpace: 'normal',
                                                 textOverflow: 'ellipsis',
                                                 marginBottom: '0.5em',
                                                 fontWeight: 'bold'
-                                            }}
-                                        >
-                                            {book.title}
-                                        </Typography>
-                                        <Typography
-                                            variant="body2"
-                                            component="p"
-                                            color="textSecondary"
-                                            gutterBottom
-                                        >
-                                            {book.author}
-                                        </Typography>
-                                        {isBookInReadingList(book) ? (
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                onClick={() => onRemoveFromReadingList(book)}
-                                                style={{ position: 'relative'}}
-                                                startIcon={<RemoveIcon />}
-                                            >
-                                                Remove
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                variant="contained"
-                                                color="primary"
-                                                onClick={() => onAddToReadingList(book)}
-                                                style={{ position: 'relative'}}
-                                                startIcon={<AddIcon />}
-                                            >
-                                                Add
-                                            </Button>
-                                        )}
-                                    </Paper>
+                                            }
+                                        }}
+                                        authorTypographyProps={{ variant: 'body2', color: 'textSecondary', gutterBottom: true }}
+                                    />
                                 </Grid>
                             ))}
                         </Grid>

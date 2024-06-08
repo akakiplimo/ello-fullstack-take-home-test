@@ -1,8 +1,9 @@
 import React from "react";
-import {Grid, Paper, Button, Typography} from '@mui/material';
-import {StyledImg} from "../AppContainer.tsx";
+import {Grid, Typography} from '@mui/material';
 import _ from "lodash";
 import {ReadingListProps} from "../../types/types.ts";
+import BookCover from "../Book/BookCover.tsx";
+import {isBookInReadingList} from "../../utils/helpers.ts";
 
 const ReadingListGrid: React.FC<ReadingListProps> = ({ readingList, setReadingList }) => {
     const handleRemove = (index: number) => {
@@ -25,39 +26,14 @@ const ReadingListGrid: React.FC<ReadingListProps> = ({ readingList, setReadingLi
             <Grid container spacing={2}>
                     {readingList.map((item, index) => (
                     <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Paper style={{ padding: 16, position: 'relative' }}>
-                            <StyledImg
-                                srcSet={`${item.coverPhotoURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                src={`${item.coverPhotoURL}?w=164&h=164&fit=crop&auto=format`}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                            <Typography
-                                variant="h6"
-                                component="h3"
-                                style={{
-                                    fontWeight: 'bold'
-                                }}
-                            >
-                                {item.title}
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                component="p"
-                                color="textSecondary"
-                                gutterBottom
-                            >
-                                {item.author}
-                            </Typography>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                onClick={() => handleRemove(index)}
-                                style={{ position: 'relative'}}
-                            >
-                                Remove
-                            </Button>
-                        </Paper>
+                        <BookCover
+                            book={item}
+                            isInReadingList={isBookInReadingList(item, readingList)}
+                            onAddToReadingList={()=>{}}
+                            onRemoveFromReadingList={() =>handleRemove(index)}
+                            titleTypographyProps={{ variant: 'h6', color: 'textPrimary', style: {fontWeight: 'bold'}}} // Customize title Typography
+                            authorTypographyProps={{ variant: 'body1', color: 'textSecondary', gutterBottom: true }} // Customize author Typography
+                        />
                     </Grid>
                 ))}
             </Grid>
