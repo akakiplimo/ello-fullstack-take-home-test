@@ -79,7 +79,7 @@ function BookAssignmentView() {
                     handleSearchChange={handleSearchChange}
                 />
             </Box>
-            <h1>Reading List</h1>
+            <h1>Reading List {readingList.length > 0 ? `(${readingList.length})` : null}</h1>
             <ReadingListGrid readingList={readingList} setReadingList={setReadingList}/>
         </Container>
     );
