@@ -22,7 +22,8 @@ function AppContainer() {
                                                           }
                                                         }`;
 
-            const response = await fetch('http://localhost:4000/', {
+            // url would be http://localhost:4000/ in dev
+            const response = await fetch('https://ello-fullstack-adrian-server.vercel.app/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
