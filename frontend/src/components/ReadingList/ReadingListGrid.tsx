@@ -1,6 +1,6 @@
 import React from "react";
-import {Grid, Paper, Button, Typography, styled} from '@mui/material';
-import {StyledImg} from "../MainTeacherView.tsx";
+import {Grid, Paper, Button, Typography} from '@mui/material';
+import {StyledImg} from "../AppContainer.tsx";
 import _ from "lodash";
 import {ReadingListProps} from "../../types/types.ts";
 

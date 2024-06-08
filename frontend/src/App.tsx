@@ -1,11 +1,14 @@
-import MainTeacherView from "./components/MainTeacherView.tsx";
+import MainTeacherView from "./components/AppContainer.tsx";
 import {ThemeProvider} from "@mui/material";
 import theme from "./theme.ts";
+import {ReadingListProvider} from "./context/ReadingListContext.tsx";
 function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <MainTeacherView />
+        <ReadingListProvider>
+            <MainTeacherView />
+        </ReadingListProvider>
     </ThemeProvider>
   )
 }

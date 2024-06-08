@@ -15,6 +15,8 @@ export interface ReadingListProps {
 export interface SearchBarProps {
     books: Book[];
     readingList: Book[];
+    searchTerm: string;
     onAddToReadingList: (book: Book) => void;
     onRemoveFromReadingList: (book: Book) => void;
+    handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }

@@ -9,7 +9,7 @@ const useBookSearch = (books: Book[]) => {
     };
 
     const filteredBooks = books.filter((book: Book) =>
-        book.title.toLowerCase().includes(searchTerm.toLowerCase())
+        book.title && book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return { searchTerm, handleSearchChange, filteredBooks };
