@@ -21,11 +21,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
         book.title && book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const disabledStyle = {
-        cursor: 'not-allowed',
-        pointerEvents: 'auto',
-    };
-
     return (
         <>
             <TextField
@@ -43,7 +38,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
                                 edge="end"
                                 size="large"
                                 disabled={!searchTerm}
-                                style={!searchTerm ? disabledStyle : {}}
                             >
                                 <ClearIcon />
                             </IconButton>
