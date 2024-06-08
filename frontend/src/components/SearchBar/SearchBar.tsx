@@ -56,7 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                             gutterBottom
                             sx={{ alignSelf: 'flex-start' }}
                         >
-                            Search Results
+                            Search Results. Showing {filteredBooks.length} results
                         </Typography>
                         <Box
                             sx={{
@@ -72,7 +72,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                             {filteredBooks.length > 0 ? (
                             <Grid container spacing={2}>
                             {filteredBooks.map((book, index) => (
-                                <Grid item key={index} xs={12} sm={6} md={4}>
+                                <Grid item key={index} xs={12} sm={6} md={3} lg={2}>
                                     <Paper style={{ padding: 16, position: 'relative' }}>
                                         <StyledImg
                                             srcSet={`${book.coverPhotoURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
