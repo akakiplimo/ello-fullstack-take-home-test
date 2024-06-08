@@ -1,4 +1,4 @@
-import {Box, Container} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import styled from 'styled-components';
 import ReadingListGrid from "./ReadingList/ReadingListGrid.tsx";
@@ -50,13 +50,6 @@ function BookAssignmentView() {
         fetchBooks().then(() => console.log('Fetch Success')).catch(e => console.error('err', e));
     }, []);
 
-    //@TODO: add search bar that allows users to search books by title
-    //@TODO: list search results that display the book title, author & a button to add books to the student reading list
-    //@TODO: * EXTRA have a remove button within search bar if book is already chosen
-    //@TODO: Have a reading list that displays all books the teacher has added i.e. we need a state to keep selected readingList books
-    //@TODO: * Aesthetically show the book details within reading list
-    //@TODO: Button to remove a book from the reading list
-
     return (
         <Container maxWidth='lg'>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4 }}>
@@ -79,7 +72,6 @@ function BookAssignmentView() {
                     handleSearchChange={handleSearchChange}
                 />
             </Box>
-            <h1>Reading List {readingList.length > 0 ? `(${readingList.length})` : null}</h1>
             <ReadingListGrid readingList={readingList} setReadingList={setReadingList}/>
         </Container>
     );

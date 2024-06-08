@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {TextField, Grid, Paper, Button, Box, Typography, InputAdornment, IconButton} from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import {Book, SearchBarProps} from '../../types/types';
 import {StyledImg} from "../MainTeacherView.tsx";
 
@@ -52,11 +54,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 searchTerm === '' ? null : (
                     <>
                         <Typography
+                            variant="h6"
+                            sx={{ alignSelf: 'flex-start', fontWeight: 'bold' }}
+                        >
+                            Search Results
+                        </Typography>
+                        <Typography
                             variant="subtitle1"
                             gutterBottom
                             sx={{ alignSelf: 'flex-start' }}
                         >
-                            Search Results. Showing {filteredBooks.length} results
+                            <em>Showing {filteredBooks.length} results</em>
                         </Typography>
                         <Box
                             sx={{
@@ -80,14 +88,35 @@ const SearchBar: React.FC<SearchBarProps> = ({
                                             alt={book.title}
                                             loading="lazy"
                                         />
-                                        <h3>{book.title}</h3>
-                                        <p>{book.author}</p>
+                                        <Typography
+                                            variant="subtitle1"
+                                            component="h3"
+                                            style={{
+                                                maxHeight: '3.5em',
+                                                overflow: 'hidden',
+                                                whiteSpace: 'normal',
+                                                textOverflow: 'ellipsis',
+                                                marginBottom: '0.5em',
+                                                fontWeight: 'bold'
+                                            }}
+                                        >
+                                            {book.title}
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            component="p"
+                                            color="textSecondary"
+                                            gutterBottom
+                                        >
+                                            {book.author}
+                                        </Typography>
                                         {isBookInReadingList(book) ? (
                                             <Button
                                                 variant="contained"
                                                 color="secondary"
                                                 onClick={() => onRemoveFromReadingList(book)}
                                                 style={{ position: 'relative'}}
+                                                startIcon={<RemoveIcon />}
                                             >
                                                 Remove
                                             </Button>
@@ -97,8 +126,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
                                                 color="primary"
                                                 onClick={() => onAddToReadingList(book)}
                                                 style={{ position: 'relative'}}
+                                                startIcon={<AddIcon />}
                                             >
-                                                Add to Reading List
+                                                Add
                                             </Button>
                                         )}
                                     </Paper>
@@ -107,7 +137,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                         </Grid>
                             ) : (
                                 <Typography variant="body1" color="textSecondary">
-                                    No results found. Please adjust your search criteria and try again.
+                                    🔍 No results found. Please adjust your search criteria and try again.
                                 </Typography>
                             )
                             }
