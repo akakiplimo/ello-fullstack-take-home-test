@@ -14,8 +14,8 @@ const ReadingListGrid: React.FC<ReadingListProps> = ({ readingList, setReadingLi
 
     return (
         <>
-            <Typography variant="h2" gutterBottom>
-                Reading List {readingList.length > 0 ? `(${readingList.length})` : null}
+            <Typography variant="h3" gutterBottom>
+                Reading List {readingList.length > 0 ? `(${readingList.length} ${readingList.length === 1 ? 'book' : 'books'})` : null}
             </Typography>
             {
                 _.isEmpty(readingList) ?
