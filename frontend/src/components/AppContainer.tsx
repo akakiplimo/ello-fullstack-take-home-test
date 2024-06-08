@@ -1,6 +1,5 @@
 import {Container} from "@mui/material";
 import {useEffect, useState} from "react";
-import styled from 'styled-components';
 import ReadingListGrid from "./ReadingList/ReadingListGrid.tsx";
 import {Book} from "../types/types.ts";
 import {useReadingList} from "../context/ReadingListContext.tsx";
@@ -47,10 +46,5 @@ function AppContainer() {
         </Container>
     );
 }
-
-export const StyledImg = styled.img`
-    height: 100%;
-    width: 100%;
-`
 
 export default AppContainer;

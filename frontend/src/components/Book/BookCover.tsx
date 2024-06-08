@@ -3,8 +3,7 @@ import { Paper, Typography } from '@mui/material';
 import { Book as BookType } from '../../types/types.ts';
 import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
 import BookButton from './BookButton';
-import {StyledImg} from "../AppContainer.tsx";
-
+import styled from 'styled-components';
 interface BookProps {
     book: BookType;
     isInReadingList: boolean;
@@ -56,3 +55,9 @@ const BookCover: React.FC<BookProps> = ({
 };
 
 export default BookCover;
+
+export const StyledImg = styled.img`
+    height: 100%;
+    width: 100%;
+    border-radius: 10%;
+`
