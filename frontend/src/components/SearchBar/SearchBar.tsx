@@ -32,15 +32,18 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <IconButton
+                            { searchTerm ?
+                                <IconButton
                                 aria-label="clear search"
                                 onClick={() => setSearchTerm('')}
                                 edge="end"
                                 size="large"
                                 disabled={!searchTerm}
-                            >
-                                <ClearIcon />
-                            </IconButton>
+                                >
+                                    <ClearIcon/>
+                                </IconButton>
+                                : null
+                            }
                         </InputAdornment>
                     ),
                 }}

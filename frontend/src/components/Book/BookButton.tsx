@@ -5,7 +5,7 @@ interface CustomButtonProps extends ButtonProps {}
 
 const BookButton: React.FC<CustomButtonProps> = ({ children, ...rest }) => {
     return (
-        <Button {...rest}>
+        <Button sx={{width: '100%'}} {...rest}>
             {children}
         </Button>
     );
