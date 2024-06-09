@@ -4,6 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import {SearchBarProps} from '../../types/types';
 import BookCover from "../Book/BookCover.tsx";
 import {isBookInReadingList} from "../../utils/helpers.ts";
+import _ from "lodash";
 
 const SearchBar: React.FC<SearchBarProps> = ({
                                                  books,
@@ -78,8 +79,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
                         >
                             {filteredBooks.length > 0 ? (
                             <Grid container spacing={2}>
-                            {filteredBooks.map((book, index) => (
-                                <Grid item key={index} xs={12} sm={6} md={3} lg={2}>
+                            {filteredBooks.map((book) => (
+                                <Grid item key={_.uniqueId()} xs={12} sm={6} md={3} lg={2}>
                                     <BookCover
                                         book={book}
                                         isInReadingList={isBookInReadingList(book, readingList)}

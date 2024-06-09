@@ -25,7 +25,7 @@ const ReadingListGrid: React.FC<ReadingListProps> = ({ readingList, setReadingLi
                 :
             <Grid container spacing={2}>
                     {readingList.map((item, index) => (
-                    <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                    <Grid item key={_.uniqueId()} xs={12} sm={6} md={4} lg={3}>
                         <BookCover
                             book={item}
                             isInReadingList={isBookInReadingList(item, readingList)}
